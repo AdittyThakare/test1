@@ -3,7 +3,7 @@
   "info": {
     "title": "Streetlights Kafka API",
     "version": "1.0.0",
-    "description": "The Smartylighting Streetlights API allows you to remotely manage the city lights"
+    "description": "The Smartylighting Streetlights API allows you to remotely manage the city lights",
     "license": {
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0"
