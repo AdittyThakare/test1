@@ -1,7 +1,7 @@
 {
   "asyncapi" : "2.1.0",
   "info" : {
-    "version" : "22",
+    "version" : "23",
     "title" : "Kafka",
     "x-channel-name" : "/Channels/KafkaChannel"
   },
@@ -65,39 +65,130 @@
   },
   "components" : {
     "schemas" : {
+      "ConceptRef_" : {
+        "type" : "object",
+        "properties" : {
+          "ref" : {
+            "type" : "string",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          }
+        }
+      },
+      "OrderItem" : {
+        "properties" : {
+          "item_name" : {
+            "type" : "string",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "price" : {
+            "type" : "number",
+            "format" : "double",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "quantity" : {
+            "type" : "integer",
+            "format" : "int32",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "OrderItem_property_0" : {
+            "type" : "boolean",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "OrderItem_property_1" : {
+            "type" : "string",
+            "format" : "date-time",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          }
+        }
+      },
+      "Order" : {
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OrderItem",
+              "historyPolicy" : 0,
+              "historySize" : 0,
+              "x-conceptPath" : "/Concepts/OrderItem",
+              "x-event-payloadtype" : "CEPT_REF"
+            }
+          }
+        }
+      },
       "OrderEvent" : {
         "type" : "object",
         "properties" : {
-          "_ns_" : {
-            "type" : "string"
-          },
-          "_extId_" : {
-            "type" : "string"
+          "payload" : {
+            "properties" : {
+              "Order" : {
+                "type" : "object",
+                "$ref" : "#/components/schemas/Order",
+                "historyPolicy" : 0,
+                "historySize" : 0,
+                "x-conceptPath" : "Order",
+                "x-event-payloadtype" : "CEPT_REF",
+                "x-nameSpace" : "www.tibco.com/be/ontology/Concepts/Order"
+              }
+            }
           },
           "customer_id" : {
             "type" : "string"
           },
           "order_id" : {
             "type" : "string"
+          }
+        }
+      },
+      "Customer" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "historyPolicy" : 0,
+            "historySize" : 0
           },
-          "_nm_" : {
-            "type" : "string"
+          "age" : {
+            "type" : "integer",
+            "format" : "int32",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "address" : {
+            "type" : "string",
+            "historyPolicy" : 0,
+            "historySize" : 0
+          },
+          "test" : {
+            "type" : "string",
+            "historyPolicy" : 0,
+            "historySize" : 0
           }
         }
       },
       "CustomerSignup" : {
         "type" : "object",
         "properties" : {
-          "_ns_" : {
-            "type" : "string"
-          },
-          "_extId_" : {
-            "type" : "string"
+          "payload" : {
+            "properties" : {
+              "Customer" : {
+                "type" : "object",
+                "$ref" : "#/components/schemas/Customer",
+                "historyPolicy" : 0,
+                "historySize" : 0,
+                "x-conceptPath" : "Customer",
+                "x-event-payloadtype" : "CEPT_REF",
+                "x-nameSpace" : "www.tibco.com/be/ontology/Concepts/Customer"
+              }
+            }
           },
           "ref_code" : {
-            "type" : "string"
-          },
-          "_nm_" : {
             "type" : "string"
           }
         }
